@@ -16,23 +16,33 @@ $sha256Checksum64Bit = '55cba7febccb1a6972b57aa572234e587107f3e423827d8aec9577fc
 [array] $uninstallInfo = Get-UninstallRegistryKey -SoftwareName $installedSoftwareFilter
 
 if ($uninstallInfo.Count -eq 1) {
+    $packageArgs = @{
+        packageName = $packageName
+        validExitCodes= @(0, 3010, 1605, 1614, 1641) # https://msdn.microsoft.com/en-us/library/aa376931(v=vs.85).aspx
+    }
+    if ($uninstallInfo.UninstallString -like "*msiexec*") {
+        $packageArgs['fileType'] = 'MSI'
+        # The Product Code GUID is the most important thing that should be passed for MSI, and very
+        # FIRST, because it comes directly after /x, which is already set in the
+        # Uninstall-ChocolateyPackage msiargs.
+        $packageArgs['silentArgs'] = "$($uninstallInfo.PSChildName) /qn /norestart"
+        $packageArgs['file'] = ''
+    } else {
+        $packageArgs['fileType'] = 'EXE'
+        # Run NSIS uninstal exe in silent mode
+        $packageArgs['silentArgs'] = "/S"
+        $uninstallCmd = $uninstallInfo.UninstallString
+        # Uninstall string might contain something like '"C:\Progam Files\X\uninstall.exe" /s'
+        # Only the part in quotes needs to be kept
+        if ($uninstallCmd.Contains('"')) {
+            $start = $uninstallCmd.IndexOf('"')
+            $end = $uninstallCmd.IndexOf('"', $start + 1)
+            $packageArgs['file'] = $uninstallCmd.Substring($start + 1, $end - $start - 1)
+        }
+    }
     Write-Output "Found previous install, running uninstall first"
-    $silentArgs = '/qn /norestart'
-    $validExitCodes = @(0, 3010, 1605, 1614, 1641)
-    if ($installerType -ne 'MSI') {
-        $validExitCodes = @(0)
-    }
-    $uninstallInfo | % {
-        $file = "$($_.UninstallString)"
+    Uninstall-ChocolateyPackage @packageArgs `
 
-        # Prepend MSI identifier
-        $silentArgs = "$($_.PSChildName) $silentArgs"
-
-        Uninstall-ChocolateyPackage -PackageName $packageName `
-                                    -FileType 'MSI' `
-                                    -SilentArgs "$silentArgs" `
-                                    -ValidExitCodes $validExitCodes `
-    }
 } elseif ($uninstallInfo.Count -gt 1) {
     Write-Warning "$($uninstallInfo.Count) previous installations found!"
     Write-Warning "To prevent accidental data loss, no installations will be altered."
