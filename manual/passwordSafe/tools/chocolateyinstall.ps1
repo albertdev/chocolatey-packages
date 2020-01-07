@@ -3,11 +3,11 @@
 $packageName= 'passwordSafe'
 $installedSoftwareFilter = "Password Safe*"
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url        = 'https://github.com/pwsafe/pwsafe/releases/download/3.50.0/pwsafe-3.50.0.msi'
-$url64      = 'https://github.com/pwsafe/pwsafe/releases/download/3.50.0/pwsafe64-3.50.0.msi'
+$url        = 'https://github.com/pwsafe/pwsafe/releases/download/3.51.0/pwsafe-3.51.0.msi'
+$url64      = 'https://github.com/pwsafe/pwsafe/releases/download/3.51.0/pwsafe64-3.51.0.msi'
 
-$sha256Checksum32Bit = '746b3dc0f0b9cd4d0e8c96b42faed42bbd3c798c8d814a5bb1a694985c523a88'
-$sha256Checksum64Bit = '55cba7febccb1a6972b57aa572234e587107f3e423827d8aec9577fc3d56ae34'
+$sha256Checksum32Bit = '3f619720507e0d3af9792781e3de286687136f67eb98f7a59032026ed7502a40'
+$sha256Checksum64Bit = '1bae780ad8e3289978a98622ea3e51ae8b9afa498b13c6f2e99f76d738b16aeb'
 
 # Check if a previous version is still installed.  The MSI install at the end of this script
 # complains when it detects previous installs, so uninstall first.
@@ -20,7 +20,7 @@ if ($uninstallInfo.Count -eq 1) {
         packageName = $packageName
         validExitCodes= @(0, 3010, 1605, 1614, 1641) # https://msdn.microsoft.com/en-us/library/aa376931(v=vs.85).aspx
     }
-    if ($uninstallInfo.UninstallString -like "*msiexec*") {
+    if ($uninstallInfo.UninstallString -like "*msiex*") {
         $packageArgs['fileType'] = 'MSI'
         # The Product Code GUID is the most important thing that should be passed for MSI, and very
         # FIRST, because it comes directly after /x, which is already set in the
