@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>colemak</id>
+    <version>1.2.1</version>
+    <title>colemak (Install)</title>
+    <authors>Shai Coleman, Vasil Zlatanov</authors>
+    <owners>Jukka Lehtniemi</owners>
+    <projectUrl>http://colemak.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Colemak keyboard layout
+=======================
+
+Colemak is a modern alternative to the QWERTY and Dvorak layouts. It is designed for efficient and ergonomic touch typing in English.
+
+Caps Lock remapping
+-------------------
+
+This installer will remap Caps Lock to Backspace as originally designed by Shai Coleman.
+
+Credits
+-------
+
+Original layout was designed by Shai Coleman.
+
+The Windows installer to support Caps Lock remapping was developed by Vasil Zlatanov. More information about this installer: http://forum.colemak.com/viewtopic.php?id=1621</description>
+    <summary>Colemak keyboard layout</summary>
+    <copyright>Shai Coleman, Vasil Zlatanov</copyright>
+    <tags>colemak keyboard-layout</tags>
+  </metadata>
+</package>
