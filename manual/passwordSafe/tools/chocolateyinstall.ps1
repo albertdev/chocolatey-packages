@@ -41,7 +41,7 @@ if ($uninstallInfo.Count -eq 1) {
         }
     }
     Write-Output "Found previous install, running uninstall first"
-    Uninstall-ChocolateyPackage @packageArgs `
+    Uninstall-ChocolateyPackage @packageArgs > $null
 
 } elseif ($uninstallInfo.Count -gt 1) {
     Write-Warning "$($uninstallInfo.Count) previous installations found!"
