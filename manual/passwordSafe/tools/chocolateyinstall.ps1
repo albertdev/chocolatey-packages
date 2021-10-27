@@ -3,11 +3,11 @@
 $packageName= 'passwordSafe'
 $installedSoftwareFilter = "Password Safe*"
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url        = 'https://github.com/pwsafe/pwsafe/releases/download/3.55.0/pwsafe-3.55.0.msi'
-$url64      = 'https://github.com/pwsafe/pwsafe/releases/download/3.55.0/pwsafe64-3.55.0.msi'
+$url        = 'https://github.com/pwsafe/pwsafe/releases/download/3.57.0/pwsafe-3.57.0.msi'
+$url64      = 'https://github.com/pwsafe/pwsafe/releases/download/3.57.0/pwsafe64-3.57.0.msi'
 
-$sha256Checksum32Bit = '88373b9606e4e16b8c6807c46c460377b97c31e085d84bac1b6f4366ae9ad65b'
-$sha256Checksum64Bit = 'e93d76c8ad1837e4ad91feb753fbbe38755a6a212fbec0aa37193ecef4f79204'
+$sha256Checksum32Bit = '438c27bc314ac52c931dd4ce7f7535cdafbed0f9a253fdcfb79924086e54247d'
+$sha256Checksum64Bit = 'c4e43c814e015bf996e15ab0dac25326973f2f9f4fd870fa40fc8f9715520877'
 
 # Check if a previous version is still installed.  The MSI install at the end of this script
 # complains when it detects previous installs, so uninstall first.
