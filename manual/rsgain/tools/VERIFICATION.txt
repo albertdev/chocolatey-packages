@@ -1,0 +1,19 @@
+﻿
+VERIFICATION
+Verification is intended to assist the Chocolatey moderators and community
+in verifying that this package's contents are trustworthy.
+
+Package can be verified like this:
+
+1. Go to
+
+   x64: https://github.com/complexlogic/rsgain/releases/download/v3.6/rsgain-3.6-win64.zip
+
+   to download the built binaries in a zip.
+
+2. You can use one of the following methods to obtain the SHA256 checksum:
+   - Use powershell function 'Get-FileHash'
+   - Use Chocolatey utility 'checksum.exe'
+
+   checksum64: C61272A15BB9BC5EE3DA374889C80EBA02360920A6A10B41D11EF6DCA7E61110
+

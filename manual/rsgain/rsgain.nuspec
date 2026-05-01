@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Read this before creating packages: https://docs.chocolatey.org/en-us/create/create-packages -->
+<!-- It is especially important to read the above link to understand additional requirements when publishing packages to the community feed aka dot org (https://community.chocolatey.org/packages). -->
+
+<!-- Test your packages in a test environment: https://github.com/chocolatey/chocolatey-test-environment -->
+
+<!--
+This is a nuspec. It mostly adheres to https://docs.nuget.org/create/Nuspec-Reference. Chocolatey uses a special version of NuGet.Core that allows us to do more than was initially possible. As such there are certain things to be aware of:
+
+* the package xmlns schema url may cause issues with nuget.exe
+* Any of the following elements can ONLY be used by choco tools - projectSourceUrl, docsUrl, mailingListUrl, bugTrackerUrl, packageSourceUrl, provides, conflicts, replaces
+* nuget.exe can still install packages with those elements but they are ignored. Any authoring tools or commands will error on those elements
+-->
+
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>rsgain</id>
+    <version>3.6.0</version>
+    <packageSourceUrl>https://github.com/albertdev/chocolatey-packages</packageSourceUrl>
+    <owners>albertdev</owners>
+
+    <title>rsgain</title>
+    <authors>complexlogic,Matthias C. Hormann,Alessandro Ghedini</authors>
+    <projectUrl>https://github.com/complexlogic/rsgain</projectUrl>
+    <!--Tool is a CLI one so there is no GUI icon, seems to have no mascot either -->
+    <!--<iconUrl>http://rawcdn.githack.com/__REPLACE_YOUR_REPO__/master/icons/rsgain.png</iconUrl>-->
+    <copyright>Copyright 2014, 2019, 2022-2025</copyright> 
+    <!-- 2-clause BSD -->
+    <licenseUrl>https://github.com/complexlogic/rsgain/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+    <projectSourceUrl>https://github.com/complexlogic/rsgain/tree/v3.6</projectSourceUrl>
+    <bugTrackerUrl>https://github.com/complexlogic/rsgain/issues</bugTrackerUrl>
+    <tags>rsgain cli audio cross-platform foss mp3 aac flac wav replaygain loudness</tags>
+    <summary>rsgain applies loudness metadata tags to your files, and a ReplayGain-compatible player will adjust volume during playback.</summary>
+    <description>**rsgain** (**r**eally **s**imple **gain**) is a ReplayGain 2.0 command line utility for Windows, macOS, Linux, BSD, and Android. rsgain applies loudness metadata tags to your files, while leaving the audio stream untouched. A ReplayGain-compatible player will dynamically adjust the volume of your tagged files during playback.
+
+rsgain is designed with a "batteries included" philosophy, allowing a user to scan their entire music library without requiring external scripts or other tools. It aims to strike the perfect balance between power and simplicity by providing multiple user interfaces ('easy' and 'custom'). See [Usage](https://github.com/complexlogic/rsgain/blob/master/README.md#usage) for more information.
+
+rsgain is the backend for the [MusicBrainz Picard](https://picard.musicbrainz.org/) ReplayGain 2.0 plugin. Users that are not comfortable with command line interfaces may prefer this method since the plugin provides a GUI frontend to rsgain. See [MusicBrainz Picard Plugin](https://github.com/complexlogic/rsgain/blob/master/README.md#musicbrainz-picard-plugin) for more information.
+    </description>
+    <releaseNotes>See the [ChangeLog page](https://github.com/complexlogic/rsgain/blob/master/CHANGELOG)</releaseNotes> 
+  </metadata>
+  <files>
+    <!-- this section controls what actually gets packaged into the Chocolatey package -->
+    <file src="tools\**" target="tools" exclude="**\*.swp" />
+  </files>
+</package>
